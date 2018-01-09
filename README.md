@@ -21,3 +21,4 @@ Every time you hit the water, you'll gain a point, and the score counter at the 
 
 ### Credits
 Udacity - for making the beautiful art in this game and for making the game engine that runs it
+Marc on StackOverflow - for the Math.abs() calculator to help with collision function (https://stackoverflow.com/questions/10368004/if-number-is-between-two-numbers-by-plus-minus-10-addclass)
