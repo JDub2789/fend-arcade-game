@@ -40,6 +40,11 @@ var Player = function() {
 
 Player.prototype.update = function(dt) {
     this.speed *= dt;
+    if (this.y === -25) {
+      this.x = 200;
+      this.y = 400;
+      return;
+    }
 };
 
 Player.prototype.render = function() {
@@ -47,14 +52,16 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-  if (key === 'up') {
+  if (key === 'up' && this.y >= -25 && this.y <= 500) {
     this.y -= 25;
-  } else if (key === 'down') {
+  } else if (key === 'down' && this.y >= -25 && this.y <= 400) {
     this.y += 25;
-  } else if (key === 'right') {
+  } else if (key === 'right' && this.x < 425 && this.x >= 0) {
     this.x += 25;
-  } else if (key === 'left') {
+    console.log(this.x);
+  } else if (key === 'left' && this.x <= 425 && this.x > 0) {
     this.x -= 25;
+    console.log(this.x);
   }
 };
 
