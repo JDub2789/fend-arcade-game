@@ -28,7 +28,7 @@ Enemy.prototype.update = function(dt) {
 
 // Collision logic
 Enemy.prototype.checkCollisions = function() {
-  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 25)) {
+  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 50)) {
     player.reset();
   }
 }
@@ -76,7 +76,7 @@ Player.prototype.handleInput = function(key) {
     }
   } else if (key === 'down' && this.y >= -25 && this.y <= 400) {
     this.y += 25;
-  } else if (key === 'right' && this.x < 425 && this.x >= 0) {
+  } else if (key === 'right' && this.x < 400 && this.x >= 0) {
     this.x += 25;
   } else if (key === 'left' && this.x <= 425 && this.x > 0) {
     this.x -= 25;
