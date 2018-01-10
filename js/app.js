@@ -89,9 +89,11 @@ Player.prototype.handleInput = function(key) {
 const enemy1 = new Enemy(0, 225, 300);
 const enemy2 = new Enemy(0, 150, 125);
 const enemy3 = new Enemy(0, 50, 175);
-const enemy4 = new Enemy(0, 100, 155);
+const enemy4 = new Enemy(0, 100, 250);
+const enemy5 = new Enemy(-250, 75, 100);
+const enemy6 = new Enemy(-250, 250, 50);
 
-const allEnemies = [enemy1, enemy2, enemy3, enemy4];
+const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 const player = new Player();
 
 // This listens for key presses and sends the keys to your
