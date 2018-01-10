@@ -1,12 +1,12 @@
 "use strict";
 // Enemies our player must avoid
-var Enemy = function(x, y, speed) {
+var Enemy = function(image, x, y, speed) {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
-  this.sprite = 'images/enemy-bug.png';
+  this.sprite = image;
   this.x = x;
   this.y = y;
   this.speed = speed;
@@ -42,7 +42,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-  this.sprite = 'images/char-boy.png';
+  this.sprite = 'images/sugar-smasher.png';
   this.reset();
 };
 
@@ -85,14 +85,14 @@ Player.prototype.handleInput = function(key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const enemy1 = new Enemy(0, 225, 250);
-const enemy2 = new Enemy(0, 150, 125);
-const enemy3 = new Enemy(0, 50, 175);
-const enemy4 = new Enemy(0, 100, 225);
-const enemy5 = new Enemy(-250, 75, 100);
-const enemy6 = new Enemy(-250, 250, 50);
+const enemy1 = new Enemy('images/bug-1.png', 0, 225, 250);
+const enemy2 = new Enemy('images/bug-2.png', 0, 150, 125);
+const enemy3 = new Enemy('images/bug-3.png', 0, 50, 175);
+// const enemy4 = new Enemy(0, 100, 225);
+// const enemy5 = new Enemy(-250, 75, 100);
+// const enemy6 = new Enemy(-250, 250, 50);
 
-const allEnemies = [enemy1, enemy2, enemy3, enemy4];
+const allEnemies = [enemy1, enemy2, enemy3];
 const player = new Player();
 
 // This listens for key presses and sends the keys to your
