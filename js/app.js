@@ -1,3 +1,4 @@
+"use strict";
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
   // Variables applied to each of our instances go here,
@@ -14,14 +15,8 @@ var Enemy = function(x, y, speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-  (this.x += this.speed) * dt;
-  // Collision logic
-  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 25)) {
-  // if (this.x === player.x && this.y === player.y) {
-    player.x = 200;
-    player.y = 400;
-    return;
-  }
+  this.x += this.speed * dt;
+
   // Resets enemies when they reach edge of screen
   if (this.x >= 500) {
     this.x = -125;
@@ -30,6 +25,15 @@ Enemy.prototype.update = function(dt) {
   // which will ensure the game runs at the same speed for
   // all computers.
 };
+
+// Collision logic
+Enemy.prototype.checkCollisions = function() {
+  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 25)) {
+    player.x = 200;
+    player.y = 400;
+    return;
+  }
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -46,15 +50,19 @@ var Player = function() {
 };
 
 let winCounter = 0;
-let winSpan = document.getElementById('winCounter');
-winSpan.textContent = winCounter;
 Player.prototype.update = function(dt) {
   this.speed *= dt;
+  const winSpan = document.getElementById('winCounter');
   if (this.y === -25) {
     this.x = 200;
     this.y = 400;
     winCounter++;
-    winSpan.textContent = winCounter;
+    if (winCounter === 1) {
+      winSpan.textContent = `${winCounter} time!`;
+    } else if (winCounter === 0 || winCounter > 1) {
+      winSpan.textContent = `${winCounter} times!`;
+    }
+
   }
 };
 
@@ -77,10 +85,10 @@ Player.prototype.handleInput = function(key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const enemy1 = new Enemy(0, 225, 4);
-const enemy2 = new Enemy(0, 150, 5);
-const enemy3 = new Enemy(0, 50, 3);
-const enemy4 = new Enemy(0, 100, 3.5);
+const enemy1 = new Enemy(0, 225, 300);
+const enemy2 = new Enemy(0, 150, 125);
+const enemy3 = new Enemy(0, 50, 175);
+const enemy4 = new Enemy(0, 100, 155);
 
 const allEnemies = [enemy1, enemy2, enemy3, enemy4];
 const player = new Player();
