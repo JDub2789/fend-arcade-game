@@ -12,11 +12,19 @@ var Enemy = function(x, y, speed) {
   this.speed = speed;
 };
 
+// Collision logic
+Enemy.prototype.checkCollisions = function() {
+  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 25)) {
+    player.x = 200;
+    player.y = 400;
+  }
+}
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
   this.x += this.speed * dt;
-
+  this.checkCollisions();
   // Resets enemies when they reach edge of screen
   if (this.x >= 500) {
     this.x = -125;
@@ -26,14 +34,7 @@ Enemy.prototype.update = function(dt) {
   // all computers.
 };
 
-// Collision logic
-Enemy.prototype.checkCollisions = function() {
-  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 25)) {
-    player.x = 200;
-    player.y = 400;
-    return;
-  }
-}
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -50,20 +51,9 @@ var Player = function() {
 };
 
 let winCounter = 0;
+
 Player.prototype.update = function(dt) {
   this.speed *= dt;
-  const winSpan = document.getElementById('winCounter');
-  if (this.y === -25) {
-    this.x = 200;
-    this.y = 400;
-    winCounter++;
-    if (winCounter === 1) {
-      winSpan.textContent = `${winCounter} time!`;
-    } else if (winCounter === 0 || winCounter > 1) {
-      winSpan.textContent = `${winCounter} times!`;
-    }
-
-  }
 };
 
 Player.prototype.render = function() {
@@ -71,8 +61,19 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
+  const winSpan = document.getElementById('winCounter');
   if (key === 'up' && this.y >= -25 && this.y <= 500) {
     this.y -= 25;
+    if (this.y === -25) {
+      this.x = 200;
+      this.y = 400;
+      winCounter++;
+      if (winCounter === 1) {
+        winSpan.textContent = `${winCounter} time!`;
+      } else if (winCounter === 0 || winCounter > 1) {
+        winSpan.textContent = `${winCounter} times!`;
+      }
+    }
   } else if (key === 'down' && this.y >= -25 && this.y <= 400) {
     this.y += 25;
   } else if (key === 'right' && this.x < 425 && this.x >= 0) {
