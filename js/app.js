@@ -49,7 +49,7 @@ var Player = function() {
 let winCounter = 0;
 
 Player.prototype.update = function(dt) {
-  this.speed *= dt;
+
 };
 
 Player.prototype.render = function() {
@@ -60,9 +60,8 @@ Player.prototype.reset = function() {
   this.x = 200;
   this.y = 400;
 };
-
+const winSpan = document.getElementById('winCounter');
 Player.prototype.handleInput = function(key) {
-  const winSpan = document.getElementById('winCounter');
   if (key === 'up' && this.y >= -25 && this.y <= 500) {
     this.y -= 25;
     if (this.y === -25) {
@@ -86,14 +85,14 @@ Player.prototype.handleInput = function(key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const enemy1 = new Enemy(0, 225, 300);
+const enemy1 = new Enemy(0, 225, 250);
 const enemy2 = new Enemy(0, 150, 125);
 const enemy3 = new Enemy(0, 50, 175);
-const enemy4 = new Enemy(0, 100, 250);
+const enemy4 = new Enemy(0, 100, 225);
 const enemy5 = new Enemy(-250, 75, 100);
 const enemy6 = new Enemy(-250, 250, 50);
 
-const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+const allEnemies = [enemy1, enemy2, enemy3, enemy4];
 const player = new Player();
 
 // This listens for key presses and sends the keys to your
