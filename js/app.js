@@ -12,14 +12,6 @@ var Enemy = function(x, y, speed) {
   this.speed = speed;
 };
 
-// Collision logic
-Enemy.prototype.checkCollisions = function() {
-  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 25)) {
-    player.x = 200;
-    player.y = 400;
-  }
-}
-
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
@@ -34,7 +26,12 @@ Enemy.prototype.update = function(dt) {
   // all computers.
 };
 
-
+// Collision logic
+Enemy.prototype.checkCollisions = function() {
+  if ((Math.abs(player.x - this.x) <= 30) && (Math.abs(player.y - this.y) <= 25)) {
+    player.reset();
+  }
+}
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -46,8 +43,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
   this.sprite = 'images/char-boy.png';
-  this.x = 200;
-  this.y = 400;
+  this.reset();
 };
 
 let winCounter = 0;
@@ -60,13 +56,17 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Player.prototype.reset = function() {
+  this.x = 200;
+  this.y = 400;
+};
+
 Player.prototype.handleInput = function(key) {
   const winSpan = document.getElementById('winCounter');
   if (key === 'up' && this.y >= -25 && this.y <= 500) {
     this.y -= 25;
     if (this.y === -25) {
-      this.x = 200;
-      this.y = 400;
+      player.reset();
       winCounter++;
       if (winCounter === 1) {
         winSpan.textContent = `${winCounter} time!`;
