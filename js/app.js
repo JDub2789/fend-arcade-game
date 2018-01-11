@@ -14,7 +14,7 @@ const sugarSmasher = document.getElementById('sugarSmasher');
 const sparkle = document.getElementById('sparkle');
 const plaqueAttack = document.getElementById('plaqueAttack');
 
-let selectedId = 'captainMintyMan';
+let selectedId;
 
 
 // Enemies our player must avoid
@@ -62,10 +62,21 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-  this.sprite = `images/${selectedId}.png`;
+  this.sprite = 'images/captainMintyMan.png';
   console.log(this.sprite);
-  this.reset();
 };
+let player = new Player();
+characterModal.addEventListener('click', characterSelect);
+
+function characterSelect(event, target) {
+  selectedId = (event.target).id;
+  // Player.sprite = `'images/${selectedId}.png'`;
+
+  console.log(selectedId);
+  characterSelected = true;
+  $('#characterSelect').modal('close');
+  player.reset();
+}
 
 let winCounter = 0;
 
@@ -90,8 +101,6 @@ Player.prototype.render = function() {
 //     Player.sprite = 'images/PlaqueAttack.png';
 //   }
 // }
-
-
 
 Player.prototype.reset = function() {
   this.x = 200;
@@ -145,14 +154,3 @@ document.addEventListener('keydown', function(e) {
 
   player.handleInput(allowedKeys[e.keyCode]);
 });
-
-characterModal.addEventListener('click', characterSelect);
-let player;
-function characterSelect(event, target) {
-  // selectedId = (event.target).id;
-  Player.sprite = 'images/captainMintyMan.png';
-  player = new Player();
-  console.log(selectedId);
-  characterSelected = true;
-  $('#characterSelect').modal('close');
-}
