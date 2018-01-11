@@ -6,7 +6,9 @@ Bugger is a clone of the classic arcade game Frogger--but with bugs.
 It's a lovely summer day, and you want to go for a swim. But some _nasty, giant bugs_ are in the way! Dodge the bugs and make it to the water so you can enjoy some swimming fun.
 
 ## How do you load the game?
-Just open index.html in your favorite web browser and you're ready to play! Make sure JavaScript is enabled in your browser.
+Go here to play the game: https://jdub2789.github.io/fend-arcade-game/
+
+Or to play locally on your computer, just open index.html in your favorite web browser and you're ready to play! Make sure JavaScript is enabled in your browser.
 
 ## How do you play?
 The goal is to move your character all the way to the top of the screen. Use the arrow keys on your keyboard to move your character.
