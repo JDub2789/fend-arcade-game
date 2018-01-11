@@ -2,13 +2,31 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Bugger Game</title>
+    <title>Cavity Crusaders</title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+
 </head>
 <body>
-  <h1>BUGGER</h1>
+  <h1>Cavity Crusaders</h1>
+  <p>Bug Dodger</p>
   <p>You've won <span id="winCounter">0 times.</span></p>
+
+  <!-- Character Select Modal -->
+  <div id="characterSelect" class="modal">
+    <h2>Choose Your Cavity Crusader!</h2>
+    <div class="row">
+      <div class="col s12 m3"><img class="characterImage" id="captainMintyMan" src="images/CaptainMintyMan.png" alt="Captain Minty Man"></div>
+      <div class="col s12 m3"><img class="characterImage" id="sugarSmasher" src="images/SugarSmasher.png" alt="Sugar Smasher"></div>
+      <div class="col s12 m3"><img class="characterImage" id="sparkle" src="images/Sparkle.png" alt="Sparkle"></div>
+      <div class="col s12 m3"><img class="characterImage" id="plaqueAttack" src="images/PlaqueAttack.png" alt="Plaque Attack"></div>
+    </div>
+  </div>
+
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>

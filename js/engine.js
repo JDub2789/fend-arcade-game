@@ -24,8 +24,8 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 505;
-    canvas.height = 606;
+    canvas.width = 750;
+    canvas.height = 500;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -44,9 +44,11 @@ var Engine = (function(global) {
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
+
+        if (characterSelected == true) {
         update(dt);
         render();
-
+        }
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -107,7 +109,7 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
+                'images/yvfwc-flag.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
                 'images/stone-block.png',   // Row 3 of 3 of stone
@@ -115,7 +117,7 @@ var Engine = (function(global) {
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
             numRows = 6,
-            numCols = 5,
+            numCols = 9,
             row, col;
 
         // Before drawing, clear existing canvas
@@ -134,11 +136,12 @@ var Engine = (function(global) {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
-                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 75);
             }
         }
-
+        if (characterSelected == true) {
         renderEntities();
+      }
     }
 
     /* This function is called by the render function and is called on each game
@@ -152,8 +155,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
-        player.render();
+        // player.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -169,15 +171,19 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
+        'images/yvfwc-flag.png',
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/sugar-smasher.png',
+        'images/sugarSmasher.png',
         'images/bug-1.png',
+        'images/bug-2.png',
         'images/bug-3.png',
-        'images/bug-2.png'
+        'images/captainMintyMan.png',
+        'images/plaqueAttack.png',
+        'images/sparkle.png'
     ]);
     Resources.onReady(init);
 

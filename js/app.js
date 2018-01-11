@@ -1,4 +1,22 @@
 "use strict";
+
+// Character Select modal
+let characterSelected = false;
+
+$(document).ready(function(){
+  $('#characterSelect').modal();
+  $('#characterSelect').modal('open');
+});
+const characterModal = document.getElementById('characterSelect');
+
+const captainMintyMan = document.getElementById('captainMintyMan');
+const sugarSmasher = document.getElementById('sugarSmasher');
+const sparkle = document.getElementById('sparkle');
+const plaqueAttack = document.getElementById('plaqueAttack');
+
+let selectedId = 'captainMintyMan';
+
+
 // Enemies our player must avoid
 var Enemy = function(image, x, y, speed) {
   // Variables applied to each of our instances go here,
@@ -38,11 +56,14 @@ Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
-  this.sprite = 'images/sugar-smasher.png';
+  this.sprite = `images/${selectedId}.png`;
+  console.log(this.sprite);
   this.reset();
 };
 
@@ -56,6 +77,22 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Player.prototype.pickCharacter = function() {
+//   if (selectedId == 'captainMintyMan') {
+//     this.sprite = 'images/CaptainMintyMan.png';
+//
+//     console.log(Player.sprite);
+//   } else if (selectedId == 'sugarSmasher') {
+//     Player.sprite = 'images/sugar-smasher.png';
+//   } else if (selectedId == 'sparkle') {
+//     Player.sprite = 'images/Sparkle.png';
+//   } else if (selectedId == 'plaqueAttack') {
+//     Player.sprite = 'images/PlaqueAttack.png';
+//   }
+// }
+
+
+
 Player.prototype.reset = function() {
   this.x = 200;
   this.y = 400;
@@ -64,6 +101,7 @@ const winSpan = document.getElementById('winCounter');
 Player.prototype.handleInput = function(key) {
   if (key === 'up' && this.y >= -25 && this.y <= 500) {
     this.y -= 25;
+    console.log(this.y);
     if (this.y === -25) {
       player.reset();
       winCounter++;
@@ -93,11 +131,11 @@ const enemy3 = new Enemy('images/bug-3.png', 0, 50, 175);
 // const enemy6 = new Enemy(-250, 250, 50);
 
 const allEnemies = [enemy1, enemy2, enemy3];
-const player = new Player();
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keydown', function(e) {
   var allowedKeys = {
     37: 'left',
     38: 'up',
@@ -107,3 +145,14 @@ document.addEventListener('keyup', function(e) {
 
   player.handleInput(allowedKeys[e.keyCode]);
 });
+
+characterModal.addEventListener('click', characterSelect);
+let player;
+function characterSelect(event, target) {
+  // selectedId = (event.target).id;
+  Player.sprite = 'images/captainMintyMan.png';
+  player = new Player();
+  console.log(selectedId);
+  characterSelected = true;
+  $('#characterSelect').modal('close');
+}

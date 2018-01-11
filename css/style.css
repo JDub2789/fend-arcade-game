@@ -2,10 +2,20 @@ body {
     text-align: center;
 }
 
-h1 {
+h1,
+h2 {
   font-family: 'Press Start 2P', cursive;
 }
 
 p {
   font-family: 'Roboto', sans-serif;
+}
+
+.modal-overlay,
+#characterSelect h2 {
+  pointer-events: none;
+}
+
+.characterImage:hover {
+  cursor: pointer;
 }
